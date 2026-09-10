@@ -1,0 +1,10 @@
+<ul>
+    @for(step of scenarioService.scenario(); track step.id) {
+        @for(transition of step.transitions.onSuccess; track transition) {
+            <li>{{ getStepName(transition) }}</li>
+        }
+        @for(transition of step.transitions.onFailure; track transition) {   
+            <li>{{ getStepName(transition) }}</li>
+        }
+    }
+</ul>

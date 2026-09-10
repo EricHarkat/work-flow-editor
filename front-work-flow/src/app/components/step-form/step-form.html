@@ -1,0 +1,10 @@
+<form [formGroup]="stepForm" (ngSubmit)="onSubmit()">
+  <input formControlName="name">
+  <select id="type" formControlName="type">
+    <option value="" disabled>-- Select Type --</option>
+    @for(t of typeList; track t) {
+      <option [value]="t">{{ t }}</option>
+    }
+  </select>
+  <button type="submit">Submit</button>
+</form>
