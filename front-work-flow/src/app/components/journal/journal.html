@@ -1,0 +1,8 @@
+<ul>
+    @for(log of journalService.logs(); track $index) {
+        <li><div>{{ log.step.name }}</div>
+            <div>{{ log.status }}</div>
+            <div>{{ log.timestamp }}</div>
+        </li>
+    }
+</ul>

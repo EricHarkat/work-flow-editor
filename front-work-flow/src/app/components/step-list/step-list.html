@@ -1,5 +1,6 @@
 <ul>
     @for(step of scenarioService.scenario(); track step.id) {
+        <li><div>{{ step.name }}</div><div>{{ step.type }}</div></li>
         @for(transition of step.transitions.onSuccess; track transition) {
             <li>{{ getStepName(transition) }}</li>
         }
