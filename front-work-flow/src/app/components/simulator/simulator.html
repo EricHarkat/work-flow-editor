@@ -1,9 +1,26 @@
-<div>
-    <app-step-form/>
-    <app-step-list/>
-    <app-journal/>
-    <button (click)="onLaunch()">Lancer la simulation</button>
-    @if (simulationService.simulationError()) {
-      <p class="error">{{ simulationService.simulationError() }}</p>
-    }
+<div class="simulator">
+  <header class="simulator-header">
+    <h1>Éditeur de scénario</h1>
+    <div class="launch-area">
+      <button class="btn btn-launch" (click)="onLaunch()">▶ Lancer la simulation</button>
+      @if (simulationService.simulationError()) {
+        <p class="error">{{ simulationService.simulationError() }}</p>
+      }
+    </div>
+  </header>
+
+  <div class="simulator-grid">
+    <section class="panel">
+      <h2>Nouvelle étape</h2>
+      <app-step-form/>
+    </section>
+    <section class="panel">
+      <h2>Étapes du scénario</h2>
+      <app-step-list/>
+    </section>
+    <section class="panel panel-journal">
+      <h2>Journal d'exécution</h2>
+      <app-journal/>
+    </section>
+  </div>
 </div>

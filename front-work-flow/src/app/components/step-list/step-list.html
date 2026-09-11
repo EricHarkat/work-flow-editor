@@ -1,16 +1,28 @@
-<ul>
+<ul class="step-list">
     @for(step of scenarioService.scenario(); track step.id) {
-        <li>
-            <div>name: {{ step.name }}</div>
-            <div>type: {{ step.type }}</div>
-            <button (click)="scenarioService.selectStepForEdit(step.id)">Modifier</button>
-            <button (click)="scenarioService.removeStep(step.id)">Supprimer</button>
+        <li class="step-card">
+            <div class="step-card-header">
+                <span class="step-name">{{ step.name }}</span>
+                <span class="badge" [class]="'badge-' + step.type">{{ step.type }}</span>
+            </div>
+
+            @if (step.transitions.onSuccess?.length || step.transitions.onFailure?.length) {
+                <ul class="step-transitions">
+                    @for(transition of step.transitions.onSuccess; track transition) {
+                        <li class="transition transition-success">✓ {{ getStepName(transition) }}</li>
+                    }
+                    @for(transition of step.transitions.onFailure; track transition) {
+                        <li class="transition transition-failure">✕ {{ getStepName(transition) }}</li>
+                    }
+                </ul>
+            }
+
+            <div class="step-actions">
+                <button class="btn btn-ghost" (click)="scenarioService.selectStepForEdit(step.id)">Modifier</button>
+                <button class="btn btn-danger" (click)="scenarioService.removeStep(step.id)">Supprimer</button>
+            </div>
         </li>
-        @for(transition of step.transitions.onSuccess; track transition) {
-            <li>Si succès: {{ getStepName(transition) }}</li>
-        }
-        @for(transition of step.transitions.onFailure; track transition) {   
-            <li>Si échec: {{ getStepName(transition) }}</li>
-        }
+    } @empty {
+        <li class="empty-state">Aucune étape pour le moment.</li>
     }
 </ul>

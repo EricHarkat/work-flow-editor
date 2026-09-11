@@ -1,8 +1,14 @@
-<ul>
+<ul class="journal-list">
     @for(log of journalService.logs(); track $index) {
-        <li><div>{{ log.step.name }}</div>
-            <div>{{ log.status }}</div>
-            <div>{{ log.timestamp }}</div>
+        <li class="journal-entry" [class]="'status-' + log.status">
+            <span class="journal-status-dot"></span>
+            <div class="journal-content">
+                <span class="journal-step-name">{{ log.step.name }}</span>
+                <span class="journal-status-label">{{ log.status }}</span>
+            </div>
+            <span class="journal-time">{{ log.timestamp | date:'HH:mm:ss' }}</span>
         </li>
+    } @empty {
+        <li class="empty-state">Aucun log pour le moment.</li>
     }
 </ul>
