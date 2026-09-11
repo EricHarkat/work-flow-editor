@@ -23,6 +23,16 @@ export class ScenarioService {
   }
 
   removeStep(stepId: string) {
-    this.scenario.update((steps) => steps.filter((step) => step.id !== stepId));
+    this.scenario.update((steps) =>
+      steps
+        .filter((step) => step.id !== stepId)
+        .map((step) => ({
+          ...step,
+          transitions: {
+            onSuccess: step.transitions.onSuccess?.filter((id) => id !== stepId),
+            onFailure: step.transitions.onFailure?.filter((id) => id !== stepId),
+          },
+        }))
+    );
   }
 }
