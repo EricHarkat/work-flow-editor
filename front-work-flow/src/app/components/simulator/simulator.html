@@ -3,4 +3,7 @@
     <app-step-list/>
     <app-journal/>
     <button (click)="onLaunch()">Lancer la simulation</button>
+    @if (simulationService.simulationError()) {
+      <p class="error">{{ simulationService.simulationError() }}</p>
+    }
 </div>

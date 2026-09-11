@@ -15,7 +15,7 @@ export class StepForm {
   selectedSuccessIds = signal<string[]>([]);
   selectedFailureIds = signal<string[]>([]);
 
-  public typeList: Step['type'][] = ['start', 'sms', 'email', 'custom', 'end'];
+  private readonly allTypes: Step['type'][] = ['start', 'sms', 'email', 'custom', 'end'];
   stepForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     type: new FormControl('sms', Validators.required),
@@ -28,8 +28,18 @@ export class StepForm {
       const step = this.scenarioService.scenario().find(s => s.id === id);
       if (step) {
         this.stepForm.patchValue({ name: step.name, type: step.type });
+        this.selectedSuccessIds.set(step.transitions.onSuccess ?? []);
+        this.selectedFailureIds.set(step.transitions.onFailure ?? []);
       }
     });
+  }
+
+  availableTypes(): Step['type'][] {
+    const editingId = this.scenarioService.selectedStepId();
+    const hasOtherStart = this.scenarioService
+      .scenario()
+      .some((s) => s.type === 'start' && s.id !== editingId);
+    return hasOtherStart ? this.allTypes.filter((t) => t !== 'start') : this.allTypes;
   }
 
   toggleSuccess(id: string){

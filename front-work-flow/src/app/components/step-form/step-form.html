@@ -2,7 +2,7 @@
   <input formControlName="name">
   <select id="type" formControlName="type">
     <option value="" disabled>-- Select Type --</option>
-    @for(t of typeList; track t) {
+    @for(t of availableTypes(); track t) {
       <option [value]="t">{{ t }}</option>
     }
   </select>
@@ -10,7 +10,7 @@
   @for(step of scenarioService.scenario().filter((s) => s.id !== scenarioService.selectedStepId()); track step.id) {
     <div>
       <label>
-        <input type="checkbox" [value]="step.id" (change)="toggleSuccess(step.id)">
+        <input type="checkbox" [value]="step.id" [checked]="selectedSuccessIds().includes(step.id)" (change)="toggleSuccess(step.id)">
         {{ step.name }}
       </label>
     </div>
@@ -19,7 +19,7 @@
   @for(step of scenarioService.scenario().filter((s) => s.id !== scenarioService.selectedStepId()); track step.id) {
     <div>
       <label>
-        <input type="checkbox" [value]="step.id" (change)="toggleFailure(step.id)">
+        <input type="checkbox" [value]="step.id" [checked]="selectedFailureIds().includes(step.id)" (change)="toggleFailure(step.id)">
         {{ step.name }}
       </label>
     </div>
