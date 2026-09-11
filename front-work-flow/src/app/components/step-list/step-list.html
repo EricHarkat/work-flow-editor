@@ -1,3 +1,6 @@
+@if (scenarioService.scenario().length > 0 && !hasEndStep()) {
+    <p class="warning">⚠ Aucune étape de type "end" dans ce scénario — pensez à ajouter une fin explicite.</p>
+}
 <ul class="step-list">
     @for(step of scenarioService.scenario(); track step.id) {
         <li class="step-card">

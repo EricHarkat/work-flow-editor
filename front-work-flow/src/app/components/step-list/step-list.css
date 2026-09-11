@@ -1,3 +1,12 @@
+.warning {
+  color: #b45309;
+  background: #fef3c7;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  margin-bottom: 12px;
+}
+
 .step-list {
   list-style: none;
   margin: 0;
