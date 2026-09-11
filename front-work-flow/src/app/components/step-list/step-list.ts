@@ -9,7 +9,7 @@ import { ScenarioService } from '../../services/scenario';
 })
 export class StepList {
   scenarioService = inject(ScenarioService)
-
+  
   getStepName(id: string): string {
     const step = this.scenarioService.scenario().find((s) => s.id === id);
     return step ? step.name : '(étape supprimée)';

@@ -6,5 +6,23 @@
       <option [value]="t">{{ t }}</option>
     }
   </select>
+  <p>Si succès :</p>
+  @for(step of scenarioService.scenario().filter((s) => s.id !== scenarioService.selectedStepId()); track step.id) {
+    <div>
+      <label>
+        <input type="checkbox" [value]="step.id" (change)="toggleSuccess(step.id)">
+        {{ step.name }}
+      </label>
+    </div>
+  }
+  <p>Si échec :</p>
+  @for(step of scenarioService.scenario().filter((s) => s.id !== scenarioService.selectedStepId()); track step.id) {
+    <div>
+      <label>
+        <input type="checkbox" [value]="step.id" (change)="toggleFailure(step.id)">
+        {{ step.name }}
+      </label>
+    </div>
+  }
   <button type="submit">Submit</button>
 </form>

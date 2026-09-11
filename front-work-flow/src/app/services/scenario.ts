@@ -6,6 +6,11 @@ import { Step } from '../models/step.model';
 })
 export class ScenarioService {
   scenario = signal<Step[]>([]);
+  selectedStepId = signal<string | null>(null);
+
+  selectStepForEdit(id: string | null) {
+    this.selectedStepId.set(id);
+}
 
   addStep(step: Step) {
     this.scenario.update((steps) => [...steps, step]);
