@@ -40,6 +40,8 @@ npm test
 
 ### Créer une étape
 
+> **Astuce** : les cases à cocher des transitions ne proposent que les étapes déjà créées. Il est donc préférable de créer d'abord toutes les étapes du scénario (sans se soucier des transitions), puis de revenir les éditer une par une pour choisir leurs transitions `onSuccess`/`onFailure`.
+
 Dans le panneau **Nouvelle étape** :
 
 1. Renseigne un **nom** pour l'étape.
