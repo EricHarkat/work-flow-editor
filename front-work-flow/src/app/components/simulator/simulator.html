@@ -1,11 +1,21 @@
 <div class="simulator">
   <header class="simulator-header">
     <h1>Éditeur de scénario</h1>
-    <div class="launch-area">
-      <button class="btn btn-launch" (click)="onLaunch()">▶ Lancer la simulation</button>
-      @if (simulationService.simulationError()) {
-        <p class="error">{{ simulationService.simulationError() }}</p>
-      }
+    <div class="header-actions">
+      <div class="toolbar">
+        <button class="btn btn-secondary" type="button" (click)="exportScenario()">⬇ Exporter</button>
+        <button class="btn btn-secondary" type="button" (click)="fileInput.click()">⬆ Importer</button>
+        <input #fileInput type="file" accept="application/json" hidden (change)="onImportFile($event)">
+      </div>
+      <div class="launch-area">
+        <button class="btn btn-launch" (click)="onLaunch()">▶ Lancer la simulation</button>
+        @if (simulationService.simulationError()) {
+          <p class="error">{{ simulationService.simulationError() }}</p>
+        }
+        @if (importError()) {
+          <p class="error">{{ importError() }}</p>
+        }
+      </div>
     </div>
   </header>
 

@@ -17,6 +17,33 @@
   font-weight: 700;
 }
 
+.header-actions {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.toolbar {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-secondary {
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  padding: 9px 16px;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background: var(--color-surface-muted);
+}
+
 .launch-area {
   display: flex;
   flex-direction: column;
@@ -82,6 +109,11 @@
   }
 
   .simulator-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .header-actions {
     flex-direction: column;
     align-items: stretch;
   }

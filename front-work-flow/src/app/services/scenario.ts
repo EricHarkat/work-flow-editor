@@ -12,6 +12,11 @@ export class ScenarioService {
     this.selectedStepId.set(id);
 }
 
+  setScenario(steps: Step[]) {
+    this.selectedStepId.set(null);
+    this.scenario.set(steps);
+  }
+
   addStep(step: Step) {
     this.scenario.update((steps) => [...steps, step]);
   }

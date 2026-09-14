@@ -1,0 +1,47 @@
+[
+  {
+    "id": "start-1",
+    "type": "start",
+    "name": "Démarrage",
+    "transitions": {
+      "onSuccess": ["sms-1"],
+      "onFailure": []
+    }
+  },
+  {
+    "id": "sms-1",
+    "type": "sms",
+    "name": "Envoi SMS de bienvenue",
+    "transitions": {
+      "onSuccess": ["email-1"],
+      "onFailure": ["end-1"]
+    }
+  },
+  {
+    "id": "email-1",
+    "type": "email",
+    "name": "Envoi email de confirmation",
+    "transitions": {
+      "onSuccess": ["end-1"],
+      "onFailure": ["custom-1"]
+    }
+  },
+  {
+    "id": "custom-1",
+    "type": "custom",
+    "name": "Relance manuelle",
+    "transitions": {
+      "onSuccess": ["end-1"],
+      "onFailure": ["end-1"]
+    }
+  },
+  {
+    "id": "end-1",
+    "type": "end",
+    "name": "Fin",
+    "transitions": {
+      "onSuccess": [],
+      "onFailure": []
+    }
+  }
+]
